@@ -1,0 +1,15 @@
+# ninja log v7
+14	2006	7923519822037511	CMakeFiles/imgui.dir/third_party/imgui/imgui_demo.cpp.obj	301f42625a72ab37
+44	3466	7923519822327494	CMakeFiles/implot.dir/third_party/implot/implot_demo.cpp.obj	e7c112f1ad55c398
+18	3702	7923519822077499	CMakeFiles/imgui.dir/third_party/imgui/imgui_tables.cpp.obj	bb3211370ff6f43d
+34	3929	7923519822227501	CMakeFiles/imgui.dir/third_party/imgui/backends/imgui_impl_opengl3.cpp.obj	3f519d10e190a2f8
+28	4028	7923519822177522	CMakeFiles/imgui.dir/third_party/imgui/backends/imgui_impl_sdl2.cpp.obj	62154ffa21636be9
+39	4404	7923519822277533	CMakeFiles/implot.dir/third_party/implot/implot.cpp.obj	3435df28ee893b2e
+10	4598	7923519821987512	CMakeFiles/imgui.dir/third_party/imgui/imgui_draw.cpp.obj	25ee3273ff052299
+23	4731	7923519822127494	CMakeFiles/imgui.dir/third_party/imgui/imgui_widgets.cpp.obj	f971362dbdb9d3fe
+57	6388	7923519822487493	CMakeFiles/main.dir/src/main.cpp.obj	a27f8caf700ccc52
+5	6572	7923519821937481	CMakeFiles/imgui.dir/third_party/imgui/imgui.cpp.obj	9dea441957c11360
+6572	6748	7923519887617512	libimgui.a	60dcabe5614dfd37
+51	13734	7923519822417548	CMakeFiles/implot.dir/third_party/implot/implot_items.cpp.obj	c0218f4390df4c7c
+13734	13880	7923519959240850	libimplot.a	9ad02517c0bb50d5
+13880	14079	7923519960693030	main.exe	1fca691028a60b3

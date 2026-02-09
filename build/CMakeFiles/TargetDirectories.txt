@@ -1,0 +1,5 @@
+C:/Users/nikit/android-backend/build/CMakeFiles/imgui.dir
+C:/Users/nikit/android-backend/build/CMakeFiles/implot.dir
+C:/Users/nikit/android-backend/build/CMakeFiles/main.dir
+C:/Users/nikit/android-backend/build/CMakeFiles/edit_cache.dir
+C:/Users/nikit/android-backend/build/CMakeFiles/rebuild_cache.dir
