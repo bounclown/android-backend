@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <glew.h>
 #include <SDL.h>
 #include <windows.h>
 

@@ -4,19 +4,22 @@ project(backend_notes)
 set(CMAKE_CXX_STANDARD 17)
 
 set(THIRD_PARTY_DIR ${PROJECT_SOURCE_DIR}/third_party)
+set(LIB_BIN_DIR ${THIRD_PARTY_DIR}/lib_bin)
 set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 
-# SDL2
-set(SDL2_DIR "C:/SDL2-2.32.10/x86_64-w64-mingw32/lib/cmake/SDL2")
-find_package(SDL2 REQUIRED)
+set(SDL2_INCLUDE_DIR "${LIB_BIN_DIR}/SDL2/include/SDL2")
+set(SDL2_LIBS 
+    "${LIB_BIN_DIR}/SDL2/lib/libSDL2main.a" 
+    "${LIB_BIN_DIR}/SDL2/lib/libSDL2.dll.a"
+)
 
-# OpenGL/GLEW
+set(ZMQ_INCLUDE_DIR "${LIB_BIN_DIR}/zeromq/include")
+set(ZMQ_LIB "${LIB_BIN_DIR}/zeromq/lib/libzmq.dll.a")
+
 find_package(OpenGL REQUIRED)
-set(GLEW_INCLUDE_DIRS "C:/libs/glew-2.3.1/include")
-set(GLEW_LIBRARIES "C:/libs/glew-2.3.1/lib/Release/x64/glew32.lib")
-
-include_directories(${INCLUDE_DIR})
+set(GLEW_INCLUDE_DIR "${LIB_BIN_DIR}/glew/include")
+set(GLEW_LIB "${LIB_BIN_DIR}/glew/lib/glew32.lib")
 
 add_library(imgui STATIC
     ${THIRD_PARTY_DIR}/imgui/imgui.cpp
@@ -30,10 +33,9 @@ add_library(imgui STATIC
 target_include_directories(imgui PUBLIC 
     ${THIRD_PARTY_DIR}/imgui 
     ${THIRD_PARTY_DIR}/imgui/backends
-    ${SDL2_INCLUDE_DIRS}
-    ${GLEW_INCLUDE_DIRS}
+    "${LIB_BIN_DIR}/SDL2/include"
+    "${LIB_BIN_DIR}/glew/include"
 )
-target_compile_options(imgui PRIVATE -fPIC)
 
 add_library(implot STATIC
     ${THIRD_PARTY_DIR}/implot/implot.cpp
@@ -42,7 +44,6 @@ add_library(implot STATIC
 )
 target_include_directories(implot PUBLIC ${THIRD_PARTY_DIR}/implot)
 target_link_libraries(implot PRIVATE imgui)
-target_compile_options(implot PRIVATE -fPIC)
 
 add_executable(main ${SRC_DIR}/main.cpp)
 
@@ -50,20 +51,30 @@ target_include_directories(main PRIVATE
     ${INCLUDE_DIR}
     ${THIRD_PARTY_DIR}/cppzmq
     ${THIRD_PARTY_DIR}/json/include
-    "C:/libs/zeromq-4.3.5/include"
-    "C:/libs/glew-2.3.1/include"
-    "C:/SDL2-2.32.10/x86_64-w64-mingw32/include"
-    "C:/SDL2-2.32.10/x86_64-w64-mingw32/include/SDL2"
+    "${LIB_BIN_DIR}/zeromq/include"
+    "${LIB_BIN_DIR}/glew/include"
+    "${LIB_BIN_DIR}/SDL2/include"
+    ${THIRD_PARTY_DIR}/imgui
+    ${THIRD_PARTY_DIR}/imgui/backends
+    ${THIRD_PARTY_DIR}/implot
 )
 
 target_link_libraries(main PRIVATE 
     imgui 
     implot
-    "C:/libs/zeromq-4.3.5/lib/libzmq.dll.a"
-    "C:/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2main.a"
-    "C:/SDL2-2.32.10/x86_64-w64-mingw32/lib/libSDL2.dll.a"
+    ${ZMQ_LIB}
+    ${SDL2_LIBS}
     ${OPENGL_LIBRARIES} 
-    ${GLEW_LIBRARIES}
+    ${GLEW_LIB}
     -lmingw32 
     -mconsole
+)
+
+add_custom_command(TARGET main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${LIB_BIN_DIR}/SDL2/bin/SDL2.dll"
+    "${LIB_BIN_DIR}/zeromq/bin/libzmq.dll"
+    "${LIB_BIN_DIR}/zeromq/bin/libsodium-26.dll"
+    "${LIB_BIN_DIR}/glew/bin/glew32.dll"
+    $<TARGET_FILE_DIR:main>
 )
