@@ -49,7 +49,10 @@ add_executable(main ${SRC_DIR}/main.cpp)
 target_include_directories(main PRIVATE 
     ${INCLUDE_DIR}
     ${THIRD_PARTY_DIR}/cppzmq
+    ${THIRD_PARTY_DIR}/json/include
     "C:/libs/zeromq-4.3.5/include"
+    "C:/libs/glew-2.3.1/include"
+    "C:/SDL2-2.32.10/x86_64-w64-mingw32/include"
     "C:/SDL2-2.32.10/x86_64-w64-mingw32/include/SDL2"
 )
 

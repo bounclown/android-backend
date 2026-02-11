@@ -187,7 +187,7 @@ build cmake_object_order_depends_target_main: phony || cmake_object_order_depend
 build CMakeFiles/main.dir/src/main.cpp.obj: CXX_COMPILER__main_unscanned_ C$:/Users/nikit/android-backend/src/main.cpp || cmake_object_order_depends_target_main
   DEP_FILE = CMakeFiles\main.dir\src\main.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -IC:/Users/nikit/android-backend/include -IC:/Users/nikit/android-backend/third_party/cppzmq -IC:/libs/zeromq-4.3.5/include -IC:/SDL2-2.32.10/x86_64-w64-mingw32/include/SDL2 -IC:/Users/nikit/android-backend/third_party/imgui -IC:/Users/nikit/android-backend/third_party/imgui/backends -IC:/SDL2-2.32.10/x86_64-w64-mingw32/include -IC:/libs/glew-2.3.1/include -IC:/Users/nikit/android-backend/third_party/implot
+  INCLUDES = -IC:/Users/nikit/android-backend/include -IC:/Users/nikit/android-backend/third_party/cppzmq -IC:/libs/zeromq-4.3.5/include -IC:/libs/glew-2.3.1/include -IC:/SDL2-2.32.10/x86_64-w64-mingw32/include -IC:/SDL2-2.32.10/x86_64-w64-mingw32/include/SDL2 -IC:/Users/nikit/android-backend/third_party/imgui -IC:/Users/nikit/android-backend/third_party/imgui/backends -IC:/Users/nikit/android-backend/third_party/implot
   OBJECT_DIR = CMakeFiles\main.dir
   OBJECT_FILE_DIR = CMakeFiles\main.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\main.dir\
