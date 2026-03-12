@@ -140,10 +140,9 @@ void run_server(location *loc) {
         socket.bind("tcp://*:5555");
         std::cout << "|Сервер| прослушивание на порту 5555" << std::endl;
     } catch(const zmq::error_t& e) {
-        std::cerr << "|Сервер| ошибочка" << e.what() << std::endl;
+        std::cerr << "|Сервер| ошибочка: " << e.what() << std::endl;
         return;
     }
-    
     
     for (;;) {
         zmq::message_t request;
@@ -159,15 +158,14 @@ void run_server(location *loc) {
             loc->altitude = j.value("alt", 0.0f);
             loc->timestamp = j.value("time", 0LL);
 
-            std::ofstream file("last_location.json");
+            std::ofstream file("last_location.json", std::ios::app); 
             if (file.is_open()) {
-                file << std::setw(4) << j << std::endl;
+                file << j.dump() << std::endl; 
                 file.close();
-            }
+            }            
             socket.send(zmq::str_buffer("ACK"), zmq::send_flags::none);
-
         } catch (const std::exception& e) {
-            std::cerr << "[Сервер] ошибка с файлом: " << e.what() << std::endl;
+            std::cerr << "[Сервер] ошибка: " << e.what() << std::endl;
             socket.send(zmq::str_buffer("ERROR"), zmq::send_flags::none);
         }
     }
